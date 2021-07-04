@@ -23,11 +23,15 @@ module.exports.run = async (client, message, args) => {
     });
 
     message.guild.channels.cache.forEach(async (channel, id) => {
-      await channel.updateOverwrite(muteRole, {
-        SEND_MESSAGES: false,
-        ADD_REACTIONS: false,
-        CONNECT: false,
-      });
+      // Mettre l'id du salon goulag 
+   channel.id === "" ? await channel.updateOverwrite(muteRole, {
+      VIEW_CHANNEL: 1,
+      SEND_MESSAGES: 1,
+      ADD_REACTIONS: 1,
+  }) : await channel.updateOverwrite(muteRole, {
+      SEND_MESSAGES: false,
+      ADD_REACTIONS: false,
+      CONNECT: false,
     });
   }
 
